@@ -6,7 +6,8 @@ const app = express();
 const cors = require("cors")
 const bodyparser = require("body-parser")
 const connectDB = require("./Database/DB")
-require('dotenv').config(); // Load environment variables
+const dotenv = require('dotenv');
+dotenv.config({ path: path.join(__dirname, "../backend/config/config.env") });
 
 
 // Use CORS middleware based on the environment

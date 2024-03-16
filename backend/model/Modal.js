@@ -8,10 +8,13 @@ const UserSchema = new mongoose.Schema({
     accountstatus: { type: String, default: "Active" }
 });
 
+
 const productSchema = new mongoose.Schema({
     productName: String,
     price: Number,
-    image: String,
+    image:{
+        type:String
+    },
     productDescription: String,
 });
 
@@ -21,7 +24,9 @@ const reviewProductUpdate = new mongoose.Schema({
     productid: { type: mongoose.Types.ObjectId, ref: 'Product' },
     userid: { type: mongoose.Types.ObjectId, ref: 'User' },
     product: [productSchema],
-    image: String,
+    image:{
+        type:String
+    },
     useraccounttype: { type: String }
 })
 

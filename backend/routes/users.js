@@ -1,28 +1,31 @@
 const express = require('express');
 const router = express.Router();
 const Sign = require("../controller/SignLoginController");
-const { fetchAndSaveProducts, getRequestCount, AdminUpdateProduct, MemberUpdateProduct, getReviewedProduct, AdminUpdateReviewProduct, deleteProduct } = require('../controller/ProductController');
+const { fetchAndSaveProducts, getRequestCount, getReviewedProduct, AdminUpdateReviewProduct, deleteProduct } = require('../controller/ProductController');
 const { getUserTypeData, getUserStatusData, updateuserstatus } = require('../controller/UserController');
 const { refreshtoken } = require('../Auth/tokenrefresh');
 const { SearchFilter } = require('../controller/SearchController');
+const { AdminUpdateProduct, MemberUpdateProduct } = require('../controller/ProductUpdateController');
+const multer = require('multer');
 
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 //Auth
 router.post('/api/auth/login', Sign.loginUser);
 router.post('/api/auth/signup', Sign.signupUser);
 
 //Products
 router.get('/fetch-and-save-products', fetchAndSaveProducts);
-
 router.delete('/deleteproduct', deleteProduct)
 
 //AdminDirectUpdate
-router.post('/updateproduct', AdminUpdateProduct);
+router.post('/updateproduct', upload.single('file'), AdminUpdateProduct);
 
 //AdminRequestUpdate
 router.post('/updatereviewproduct', AdminUpdateReviewProduct);
 
 //TeamMemberUpdate
-router.post('/memberupdateproduct', MemberUpdateProduct);
+router.post('/memberupdateproduct', upload.single('file'), MemberUpdateProduct);
 
 //AccountStatus
 router.get('/api/getuserdata', getUserTypeData)
