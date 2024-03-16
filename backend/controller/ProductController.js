@@ -28,10 +28,14 @@ const fetchAndSaveProducts = async (req, res) => {
 
 const deleteProduct = async (req, res) => {
     const { productid } = req.query;
-
+    console.log(productid);
     try {
         // Find the product by ID and delete it
-        await Product.findByIdAndDelete(id);
+        const deleteproduct = await Product.findByIdAndDelete(productid);
+
+        if (!deleteproduct) {
+            return res.status(404).json({ error: 'Product not found' });
+        }
 
         res.status(200).json({ message: 'Product deleted successfully' });
     } catch (error) {
@@ -39,7 +43,6 @@ const deleteProduct = async (req, res) => {
         res.status(500).json({ error: 'Internal server error' });
     }
 };
-
 
 const AdminUpdateReviewProduct = async (req, res) => {
     try {
@@ -194,17 +197,17 @@ const MemberUpdateProduct = async (req, res) => {
             // If croppedImage is in base64 format, perform the necessary actions
             const randomProductId = uuidv4();
             const imagePath = path.join(__dirname, '../views/assets', `${randomProductId}.jpg`);
-        
+
             // Decode base64 and write to file
             await writeFileAsync(imagePath, base64Data, 'base64');
-        
+
             // Save the image path in the review document
             review.image = `/assets/${randomProductId}.jpg`;
         } else {
             // If croppedImage is not in base64 format, assume it's already an image path
             review.image = croppedImage;
         }
-        
+
 
         // Save the review to the database
         await review.save();

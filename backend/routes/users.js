@@ -12,6 +12,7 @@ router.post('/api/auth/signup', Sign.signupUser);
 
 //Products
 router.get('/fetch-and-save-products', fetchAndSaveProducts);
+
 router.delete('/deleteproduct', deleteProduct)
 
 //AdminDirectUpdate
