@@ -1,6 +1,6 @@
 // db.js
 const mongoose = require('mongoose');
-require('dotenv').config();
+
 
 // Define an asynchronous function called connectDB
 const connectDB = async () => {
