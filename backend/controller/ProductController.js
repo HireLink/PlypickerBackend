@@ -64,7 +64,7 @@ const AdminUpdateReviewProduct = async (req, res) => {
             // Save the updated product
             await reviewedproduct.save()
             await product.save();
-
+            res.status(200).json({ message: 'Product updated successfully' });
             // If a cropped image is provided, save it to the filesystem
             if (croppedImage && croppedImage.startsWith('data:image/jpeg;base64,')) {
                 // Remove the data URL prefix to get the base64 data
@@ -78,7 +78,7 @@ const AdminUpdateReviewProduct = async (req, res) => {
                 product.image = `/assets/${productId}.jpg`;
                 await product.save();
 
-                res.status(200).json({ message: 'Product updated successfully' });
+              
             }
         } else {
             console.log(req.body.id);
