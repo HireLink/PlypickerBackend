@@ -13,7 +13,7 @@ require('dotenv').config(); // Load environment variables
 if (process.env.NODE_ENV === 'production') {
   // Use Vercel CORS configuration for production
   app.use(cors({
-    origin: 'https://plypicker-admin-one.vercel.app',
+    origin: 'https://plypickeradmin.vercel.app',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   }));
