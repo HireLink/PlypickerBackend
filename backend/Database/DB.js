@@ -1,5 +1,8 @@
 // db.js
 const mongoose = require('mongoose');
+const path = require("path")
+const dotenv = require('dotenv');
+dotenv.config({ path: path.join(__dirname, "../backend/config/config.env") });
 
 
 // Define an asynchronous function called connectDB
