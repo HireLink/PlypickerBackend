@@ -8,7 +8,7 @@ const connectDB = async () => {
     // Check the NODE_ENV environment variable
     if (process.env.NODE_ENV === 'production') {
       // If the environment is production, use the MongoDB Atlas connection string
-      await mongoose.connect(process.env.MONGODB_ATLAS, {
+      await mongoose.connect("mongodb+srv://nikhilscaria3:uzlfuyj2RfRbDdEa@global.lzwsydh.mongodb.net/Plypicker?retryWrites=true&w=majority", {
       });
 
       console.log('Connected to the Atlas database');
