@@ -10,10 +10,10 @@ const allowedExtensions = ['.jpg', '.jpeg', '.png', '.gif', '.bmp'];
 
 const s3Client = new S3Client({
 
-    region: process.env.AWS_REGION,
+    region: 'eu-north-1',
     credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+        accessKeyId: 'AKIAZ4BXAKBS6X32REP6',
+        secretAccessKey: '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',
     }
 });
 
